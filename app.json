@@ -1,7 +1,45 @@
 {
-    "name": "platformkit-api",
-    "description": "Generate a REST API from a Prisma schema & deploy any SSG.",
-    "repository": "https://github.com/platform-kit/platformkit-api",
-    "logo": "https://www.platformkit.com/logos/icon.png",
-    "keywords": ["node", "express", "static", "prisma", "rest", "api", "jwt", "ssg", "database", "github", "heroku"]
+  "name": "platformkit-api",
+  "description": "Generate a REST API from a Prisma schema & deploy any SSG.",
+  "repository": "https://github.com/platform-kit/platformkit-api",
+  "logo": "https://www.platformkit.com/logos/icon.png",
+  "keywords": [
+    "node",
+    "express",
+    "static",
+    "prisma",
+    "rest",
+    "api",
+    "jwt",
+    "ssg",
+    "database",
+    "github",
+    "heroku"
+  ],
+  "env": {
+    "GITHUB_REPOSITORY": {
+      "description": "A Github repository containing a database schema and/or a static site generator.",
+      "required": true
+    },
+    "GITHUB_TOKEN": {
+      "description": "A Github token for accessing private repos.",
+      "required": false
+    },
+    "BUILD_COMMAND": {
+      "description": "A build command to run when deploying your repo.",
+      "required": false
+    },
+    "PUBLIC_DIRECTORY": {
+      "description": "The directory where your static files will be output by the build command.",
+      "required": false
+    },    
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "1"
+    }
   }
+}
