@@ -17,7 +17,7 @@ cd platformkit-api
 npm install
 ```
 
-### 2. Add the prisma schema
+### 2. Add the config
 
 If you're starting from scratch, add your prisma schema at [`app/prisma/schema.prisma`](./prisma/schema.prisma).
 
