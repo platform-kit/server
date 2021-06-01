@@ -33,7 +33,7 @@
       "description": "The directory where your static files will be output by the build command.",
       "required": false
     },    
-    "SECRET_TOKEN": {
+    "JWT_SECRET": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
     },
