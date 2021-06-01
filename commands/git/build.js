@@ -1,4 +1,4 @@
-require('dotenv-flow').config()
+require('dotenv').config()
 var command = process.env.BUILD_COMMAND;
 
 var shell = require('shelljs');
