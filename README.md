@@ -34,7 +34,7 @@ For convenience, when deploying to the cloud you may combine these two steps by 
 npm run dev
 ```
 
-The server is now running on `http://localhost:3000`. 
+The server is now running on [`http://localhost:3000`](http://localhost:3000). 
 
 You can now use the API , e.g. the api-schema endpoint, [`http://localhost:3000/api`](http://localhost:3000/api).
 
