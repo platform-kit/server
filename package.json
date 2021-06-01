@@ -10,8 +10,10 @@
     "commit": "node commands/git/commit.js",
     "push": "node commands/git/push.js",
     "build": "node commands/git/build.js",
-    "deploy": "node_modules/.bin/prisma generate; node commands/git/pull.js; node commands/git/build.js",
-    "studio": "node commands/prisma/studio.js"
+    "deploy": " node commands/git/pull.js; npm run prisma:generate; node commands/git/build.js",
+    "studio": "node commands/prisma/studio.js",
+    "prisma:generate": "node ./node_modules/.bin/prisma generate --schema=app/prisma/schema.prisma"
+
   },
   "prisma": {
     "schema": "app/prisma/schema.prisma"
