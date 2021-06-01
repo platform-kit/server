@@ -1,6 +1,6 @@
 ## PlatformKit API
 
-Automatically generate a **REST API** using [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client) in **Typescript**. 
+Automatically generate a **REST API** using [Express](https://expressjs.com/) and [Prisma](https://www.prisma.io/docs/concepts/components/prisma-client) in **Typescript**. 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 ## Getting started
