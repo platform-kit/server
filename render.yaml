@@ -21,8 +21,7 @@ services:
     fromDatabase:
       name: pkdb
       property: connectionString  
-  - key: JWT_SECRET
-    generateValue: true       # will generate a base64-encoded 256-bit secret
+  - key: JWT_SECRET    
     sync: false
   autoDeploy: false 
 
