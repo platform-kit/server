@@ -1,5 +1,5 @@
 
-require('dotenv-flow').config()
+require('dotenv').config()
 const Git = require("nodegit")
 const token = process.env.GITHUB_TOKEN;
 const fs = require("fs");

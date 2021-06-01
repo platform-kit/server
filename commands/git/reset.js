@@ -1,5 +1,5 @@
 
-require('dotenv-flow').config()
+require('dotenv').config()
 const fse = require("fs-extra");
 var path = "app";
 
