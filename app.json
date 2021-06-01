@@ -38,7 +38,7 @@
       "generator": "secret"
     },
     "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
+      "description": "The number of instances of this app that should run concurrently.",
       "value": "1"
     }
   }
