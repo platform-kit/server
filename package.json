@@ -10,7 +10,7 @@
     "commit": "node commands/git/commit.js",
     "push": "node commands/git/push.js",
     "build": "node commands/git/build.js",
-    "deploy": "node commands/git/pull.js; node commands/git/build.js",
+    "deploy": "node prisma generate; node commands/git/pull.js; node commands/git/build.js",
     "studio": "node commands/prisma/studio.js"
   },
   "prisma": {
