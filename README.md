@@ -19,7 +19,7 @@ npm install
 
 ### 2. Add the config
 
-If you're starting from scratch, add your prisma schema at [`app/prisma/schema.prisma`](./prisma/schema.prisma).
+If you're starting from scratch, add your prisma schema at [`/app/prisma/schema.prisma`](./prisma/schema.prisma).
 
 Alternatively, if you've already got a repository with a `/prisma/` directory (including at least a `prisma.schema` file), specify the `GITHUB_REPOSITORY` and `GITHUB_TOKEN` environment variables in your `.env` file. Then run `npm run pull` to clone the repo.
 
