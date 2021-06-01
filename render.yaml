@@ -10,9 +10,13 @@ services:
   startCommand: npm run start
   envVars:
   - key: BUILD_COMMAND
+    value: 
   - key: PUBLIC_DIRECTORY
+    value: 
   - key: GITHUB_REPO
+    value: 
   - key: GITHUB_TOKEN  
+    value: 
   - key: DB_URL
     fromDatabase:
       name: elephant
