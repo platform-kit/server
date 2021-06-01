@@ -65,7 +65,7 @@ For each table - aka `resource` - defined in your prisma schema, you can access 
 
 - `POST /api/{resource}/:id`: Update an existing `resource`
 
-### `DELETE`
+### `Delete`
 
 - `DELETE /{resource}/:id`: Delete a `resource` by its `id`
 
