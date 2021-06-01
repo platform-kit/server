@@ -1,6 +1,9 @@
-# REST API Example
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-This example shows how to automatically generate a **REST API** using [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client) in **Typescript**. 
+
+# PLATFORMKIT API
+
+This readme shows how to automatically generate a **REST API** using [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client) in **Typescript**. 
 
 ## Getting started
 
