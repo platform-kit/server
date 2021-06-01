@@ -1,0 +1,36 @@
+{
+    "devCommands": {
+        "reset": true,
+        "pull": true,
+        "commit": true,
+        "push": true,
+        "build": true
+    },
+    "server": {
+        "publicDirectory": true
+    },
+    "resources": {
+        "browse": true,
+        "read": true,
+        "edit": true,
+        "add": true,
+        "delete": true
+    },
+    "api": {        
+        "apiSpec": true,
+        "resource/schema": true,
+        "resource/browse": true,
+        "resource/read": true,
+        "resource/add": true,
+        "resource/edit": true,
+        "resource/delete": true,
+        "customServerlessEndpoints": false,
+        "auth": false,
+        "graphQl": false
+    },
+    "docs": {
+        "restEndpoints": true,
+        "inputValidationRules": true,
+        "exampleResponses": true
+    }
+}

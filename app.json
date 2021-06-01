@@ -1,0 +1,7 @@
+{
+    "name": "platformkit-api",
+    "description": "Generate a REST API from a Prisma schema & deploy any SSG.",
+    "repository": "https://github.com/platform-kit/platformkit-api",
+    "logo": "https://www.platformkit.com/favicon.png",
+    "keywords": ["node", "express", "static", "prisma", "rest", "api", "jwt", "ssg", "database", "github", "heroku"]
+  }

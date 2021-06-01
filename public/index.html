@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html style="height:100vh;">
+
+<head>
+    <!-- Required Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"
+        integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Required scripts -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+
+<body style="background:linear-gradient(0deg, rgba(0,0,150,0.1) -10%, #fff 80%);">
+    <div id="app">
+        <img class="d-flex mx-auto" onclick="window.open('https://www.platformkit.com', '_blank')" src="icon.svg"
+            style="cursor:pointer;margin:calc(25% - 75px);max-width:150px;box-shadow:10px 15px 15px rgba(0,0,150,0.1), -5px 5px 20px rgba(0,0,75,0.05);border-radius:75px;">
+        <br>
+        <div class="w-100 text-center">
+            <a v-b-modal.modal-api-spec class="btn btn-outline-dark">
+                <b-icon-book style="margin-bottom:-1px;margin-right:5px;"></b-icon-book> API Spec
+            </a>
+        </div>
+        <b-modal id="modal-api-spec" title="API Spec" size="xl" hide-header-close hide-footer
+            v-if="apiSpec != null && apiSpec.apiSchema != null">
+            <b-card v-for="item in apiSpec.apiSchema.routes" class="px-2 mb-2"
+                @click="current = item.resource; getSchema(item.resource)" v-if="current == null">
+                <b-icon-file-code class="text-primary" style="margin-right:5px;"></b-icon-file-code>
+                <span class="text-capitalize">{{ item.resource }}</span>
+                <div v-if="current == item.resource">
+                    {{ item }}
+                </div>
+            </b-card>
+            <b-card v-for="item in apiSpec.apiSchema.routes" class="px-2 pb-2"
+                v-if="current == item.resource">
+                <b-icon-file-code class="text-primary" style="margin-right:5px;"></b-icon-file-code>
+                <div class="d-inline mb-3 w-100"><span class="text-capitalize">{{ item.resource }}</span><span v-if="current == item.resource"
+                        class="badge bg-primary text-light p-2" style="float:right;cursor:pointer;"
+                        @click="current = null">Back</span></div>
+                <b-list-group class="mt-3 accordion">
+                    <b-list-group-item class="p-3" v-for="(endpoint, key) in item.endpoints">
+                        <span class="badge p-2" style="width:50px;text-align:left;"
+                            v-bind:class="{'text-success':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'GET', 'text-primary':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'POST',  'text-danger':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'DELETE',  }">{{
+                            endpoint.substr(0, endpoint.indexOf('/api')) }}</span>
+                        <span class="btn btn-light border btn-sm" style="float:right;"
+                            @click="setCurrentEndpoint(key)"
+                            v-if="apiSpec.apiSchema.schemas[current] != null">Details</span>
+                        <span class="badge text-dark p-2 text-lowercase ">/api/{{ endpoint.split('/api/')[1] }}</span>
+                        <b-collapse :id="'collapse-' + key" v-model="endpoints[key]"  class="mt-2">
+                            <b-card v-if="apiSpec.apiSchema.schemas[current] != null">
+                                <p class="card-text"><span class="badge bg-dark">Input Validation Rules</span><br>
+                                    <code v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key]['input_validation_rules'] != null">
+                                        <pre style="font-size:66%;">{{ JSON.stringify(apiSpec.apiSchema.schemas[current][key]['input_validation_rules'], null, 3) }}</pre>
+                                    </code>
+                                    <code v-else>N/A</code>
+                                </p>   
+                                <p class="card-text"><span class="badge bg-dark">Example Response</span><br>
+                                    <code v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key] != '{}'  && apiSpec.apiSchema.schemas[current][key] != ''">
+                                        <pre style="font-size:66%;">{{ JSON.stringify(apiSpec.apiSchema.schemas[current][key]['response'], null, 3) }}</pre>
+                                    </code>
+                                    <code v-else>N/A</code>
+                                </p>                                                                
+                            </b-card>
+                        </b-collapse>
+                    </b-list-group-item>
+                    <b-list-group-item class="p-3 d-none">
+                        <span class="badge text-dark p-2 mb-3" style="opacity:0.5;">JSON SCHEMA</span>
+                        <pre style="font-size:66%;">{{ JSON.stringify(currentSchema, null, 3) }}</pre>
+                    </b-list-group-item>
+                </b-list-group>
+            </b-card>
+        </b-modal>
+    </div>
+    <script>
+
+        window.app = new Vue({
+            el: '#app',
+            data: {
+                apiSpec: null,
+                current: null,
+                currentSchema: null,
+                endpoints: {}
+            },
+            mounted() {
+                this.getApiSpec()
+                this.$nextTick(function () {
+                    // Code that will run only after the
+                    // entire view has been rendered
+                })
+            },
+            methods: {
+                setCurrentEndpoint(endpoint) {                
+                    if (this.endpoints[endpoint] == true) {
+                        this.endpoints = {}
+                    }
+                    else {
+                        this.endpoints = {}
+                        this.endpoints[endpoint] = true
+                    }
+                },
+                getApiSpec() {
+                    this.apiSpec = {}
+                    axios
+                        .get('/api')
+                        .then(response => (
+                            this.apiSpec = response.data
+                        ))
+                },
+                getSchema(resource) {
+                    url = window.location.href + 'api/' + resource + '/schema'
+                    axios
+                        .get(url)
+                        .then(response => (
+                            this.currentSchema = response.data
+                        ))
+                }
+            }
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-core.min.js"
+        integrity="sha512-xR+IAyN+t9EBIOOJw5m83FTVMDsPd63IhJ3ElP4gmfUFnQlX9+eWGLp3P4t3gIjpo2Z1JzqtW/5cjgn+oru3yQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/autoloader/prism-autoloader.min.js"
+        integrity="sha512-zc7WDnCM3aom2EziyDIRAtQg1mVXLdILE09Bo+aE1xk0AM2c2cVLfSW9NrxE5tKTX44WBY0Z2HClZ05ur9vB6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
