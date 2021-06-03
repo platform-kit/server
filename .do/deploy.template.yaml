@@ -1,21 +1,26 @@
 spec:
-  name: platformkit-api
+  name: blog
   services:
   - name: web
     git:
-      branch: main
-      repo_clone_url: https://github.com/platform-kit/platformkit-api
+      branch: master
+      repo_clone_url: https://github.com/do-community/blog-strapi.git
     envs:
-    - key: BUILD_COMMAND
-      value: ""      
-    - key: PUBLIC_DIRECTORY
-      value: ""      
-    - key: GITHUB_REPO
-      value: ""
-    - key: GITHUB_TOKEN
-      value: ""
-    - key: DATABASE_URL
-      scope: RUN_TIME
-      value: ${pkdb.DATABASE_URL}
-  databases:
-  - name: pkdb
+      - key: STRAPI_URL
+        value: ${APP_URL}/api
+      - key: NODE_ENV
+        value: "production"
+      - key: DATABASE_URL
+        value: ${db.DATABASE_URL}
+      - key: DATABASE_HOST
+        value: ${db.HOSTNAME}
+      - key: DATABASE_PORT
+        value: ${db.PORT}
+      - key: DATABASE_NAME
+        value: ${db.DATABASE}
+      - key: DATABASE_USERNAME
+        value: ${db.USERNAME}
+      - key: DATABASE_PASSWORD
+        value: ${db.PASSWORD}
+databases:
+  - name: db

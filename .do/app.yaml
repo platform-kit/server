@@ -1,8 +1,0 @@
-name: platformkit-api
-services:
-- environment_slug: node-js
-  github:
-    branch: main
-    deploy_on_push: true
-    repo: platform-kit/platformkit-api
-  name: platformkit-api
