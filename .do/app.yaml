@@ -1,0 +1,6 @@
+name: sample-golang
+services:
+- name: web
+  github:
+    repo: platform-kit/platformkit-api
+    branch: main
