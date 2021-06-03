@@ -1,6 +1,8 @@
-name: sample-golang
+name: platformkit-api
 services:
-- name: web
+- environment_slug: node-js
   github:
-    repo: platform-kit/platformkit-api
     branch: main
+    deploy_on_push: true
+    repo: platform-kit/platformkit-api
+  name: platformkit-api
