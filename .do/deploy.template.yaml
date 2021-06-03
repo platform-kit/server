@@ -2,6 +2,7 @@ spec:
   name: platformkit-api
   services:
   - name: web
+  - environment_slug: node-js
     git:
       branch: main
       repo_clone_url: https://github.com/platform-kit/platformkit-api
