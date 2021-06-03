@@ -1,8 +1,21 @@
 spec:
-  name: sample-nodejs
+  name: platformkit-api
   services:
-  - environment_slug: node-js
+  - name: web
     git:
       branch: main
-      repo_clone_url: https://github.com/digitalocean/sample-nodejs.git
-    name: sample-nodejs
+      repo_clone_url: https://github.com/platform-kit/platformkit-api
+    envs:
+    - key: BUILD_COMMAND
+      value: ""      
+    - key: PUBLIC_DIRECTORY
+      value: ""      
+    - key: GITHUB_REPO
+      value: ""
+    - key: GITHUB_TOKEN
+      value: ""
+    - key: DATABASE_URL
+      scope: RUN_TIME
+      value: ${pkdb.DATABASE_URL}
+  databases:
+  - name: pkdb
