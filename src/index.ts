@@ -4,6 +4,9 @@ import express, { json } from 'express';
 import { Feed } from "feed";
 import Hashids from 'hashids'
 import { Resource } from '../models/resource'
+import { nexusPrisma } from 'nexus-plugin-prisma'
+import { makeSchema } from 'nexus'
+
 require('dotenv').config();
 var jwt = require('express-jwt');
 var JWT = require('jsonwebtoken');

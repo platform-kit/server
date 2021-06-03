@@ -13,7 +13,6 @@
     "deploy": " node commands/git/pull.js; npm run prisma:generate; node commands/git/build.js",
     "studio": "node commands/prisma/studio.js",
     "prisma:generate": "node commands/prisma/generate.js"
-
   },
   "prisma": {
     "schema": "app/prisma/schema.prisma"
@@ -32,12 +31,15 @@
     "feed": "^4.2.2",
     "fs": "0.0.1-security",
     "fs-extra": "^10.0.0",
+    "graphql": "^15.5.0",
     "hashids": "^2.2.8",
     "json-schema-faker": "^0.5.0-rcv.34",
     "jsonwebtoken": "^8.5.1",
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.35.0",
     "nodegit": "^0.27.0",
     "pluralize": "^8.0.0",
-    "prisma": "2.21.2",
+    "prisma": "2.24.0",
     "prisma-json-schema-generator": "^1.3.0",
     "shelljs": "^0.8.4",
     "ts-node": "9.1.1",
