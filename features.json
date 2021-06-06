@@ -18,6 +18,7 @@
     },
     "api": {        
         "apiSpec": true,
+        "jsonSchema": true,
         "resource/schema": true,
         "resource/browse": true,
         "resource/read": true,
@@ -26,7 +27,8 @@
         "resource/delete": true,
         "customServerlessEndpoints": false,
         "auth": false,
-        "graphQl": false
+        "graphQl": false,                
+        "githubToApi": false
     },
     "docs": {
         "restEndpoints": true,
