@@ -25,6 +25,9 @@
             <a v-b-modal.modal-api-spec class="btn btn-outline-dark">
                 <b-icon-book style="margin-bottom:-1px;margin-right:5px;"></b-icon-book> API Spec
             </a>
+            <a href="/graphql" target="_blank" class="btn btn-outline-dark">
+                <b-icon-braces style="margin-bottom:-1px;margin-right:5px;"></b-icon-braces> GraphQL Explorer
+            </a>
         </div>
         <b-modal id="modal-api-spec" title="API Spec" size="xl" hide-header-close hide-footer
             v-if="apiSpec != null && apiSpec.apiSchema != null">
