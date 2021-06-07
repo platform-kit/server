@@ -1,36 +1,64 @@
-// Config
+// Imports
 import { Prisma, PrismaClient } from '@prisma/client';
-import express, { json } from 'express';
-import { Feed } from "feed";
-import Hashids from 'hashids'
+import express from 'express';
 import { Resource } from '../models/resource'
 
+// Vars
 require('dotenv').config();
+var ApiSpec = require('../lib/apiSpec');
+const { ApolloServer, gql } = require('apollo-server-express');
 var jwt = require('express-jwt');
 var JWT = require('jsonwebtoken');
 const bearerToken = require('express-bearer-token');
 const prisma = new PrismaClient();
-const app = express();
 var cors = require('cors')
-app.use(cors())
-app.use(express.json());
-app.use(bearerToken());
 var fs = require('fs');
-const hashids = new Hashids('postmaker-api', 21)
-var auth0cert = Buffer.from(String(process.env.AUTH0_CERT), 'base64');
 var pluralize = require('pluralize')
 const bodyParser = require('body-parser');
 
+// Auth Config
+var auth0cert = Buffer.from(String(process.env.AUTH0_CERT), 'base64');
+
 // Express Config
+const app = express();
+app.use(cors())
+app.use(express.json());
+app.use(bearerToken());
 app.use(bodyParser.json());
 
 // Static File Routes
 app.use(express.static('public'))
-if(process.env.PUBLIC_DIRECTORY != null){
+if (process.env.PUBLIC_DIRECTORY != null) {
   app.use(express.static(process.env.PUBLIC_DIRECTORY))
 }
 
-// API Schema
+// GraphQL
+if (Boolean(process.env.ENABLE_GRAPHQL) == true) {
+
+  var gqlSchema = ApiSpec.getGraphQLSchemas()
+  console.log(gqlSchema)
+
+  const typeDefs = gqlSchema
+
+var users = new Resource('user');
+
+  // Resolvers define the technique for fetching the types defined in the
+  // schema. This resolver retrieves books from the "books" array above.
+  const resolvers = {
+    Query: {
+      users: () =>  users.browse()
+      ,
+    },
+  };
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
+  server.start();
+  server.applyMiddleware({ app });  
+}
+
+// Rest API Schema
 app.get('/api', function (req, res) {
   var jsonSchema = fs.readFileSync('./app/prisma/json-schema/json-schema.json', { encoding: 'utf8', flag: 'r' })
   var apiSchema = fs.readFileSync('./app/prisma/api-schema/api-schema.json', { encoding: 'utf8', flag: 'r' })
@@ -101,7 +129,7 @@ app.get('/api/:resource/browse', async function (req, res) {
   else {
     options = {}
   }
-  var model = new Resource(resource)  
+  var model = new Resource(resource)
   try {
     var output = await model.browse(options)
     res.json(output);
@@ -128,7 +156,7 @@ app.get('/api/:resource/:id', async function (req, res) {
       }
     }
   }
-  var model = new Resource(resource)  
+  var model = new Resource(resource)
   try {
     var output = await model.read(options)
     res.json(output);
@@ -139,7 +167,7 @@ app.get('/api/:resource/:id', async function (req, res) {
 // API Resource - Add
 app.post('/api/:resource', async function (req, res) {
   const { resource } = req.params
-  var data = req.body  
+  var data = req.body
   //console.log(typeof data)
   var model = new Resource(resource)
 
@@ -147,17 +175,17 @@ app.post('/api/:resource', async function (req, res) {
     var output = await model.add(data)
     res.json(output);
   }
-  catch (err) { 
+  catch (err) {
     console.log(err)
     res.json(err)
-   }
+  }
 })
 
 // API Resource - Edit
 app.post('/api/:resource/:id', async function (req, res) {
   const { resource } = req.params
   var itemId = Number(req.params.id)
-  var data = req.body  
+  var data = req.body
   console.log(data)
   var model = new Resource(resource)
 
@@ -165,25 +193,25 @@ app.post('/api/:resource/:id', async function (req, res) {
     var output = await model.edit(itemId, data)
     res.json(output);
   }
-  catch (err) { 
+  catch (err) {
     console.log(err)
     res.json(err)
-   }
+  }
 })
 
 // API Resource - Delete
 app.delete('/api/:resource/:id', async function (req, res) {
   const { resource } = req.params
-  var itemId = Number(req.params.id)    
+  var itemId = Number(req.params.id)
   var model = new Resource(resource)
   try {
     var output = await model.delete(itemId)
     res.json(output);
   }
-  catch (err) { 
+  catch (err) {
     console.log(err)
     res.json(err)
-   }
+  }
 })
 
 // Start Server
