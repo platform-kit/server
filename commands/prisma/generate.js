@@ -13,24 +13,8 @@ fs.access("./app/prisma", function (error) {
     }
 })
 
-// Get Prisma module
-/*
-fs.access("./app/node_modules/.bin/prisma", function (error) {
-    if (error) {
-        console.log("Apps's Prisma module directory does not exist. Using default Prisma instance.")
-        prismaModuleDir = "./node_modules/.bin/prisma";
-        generate();
-    } else {
-        console.log("App's Prisma module directory exists.")
-        prismaModuleDir = "./app/node_modules/.bin/prisma";
-        generate();
-    }
-})
-*/
-prismaModuleDir = "./node_modules/.bin/prisma";
-generate();
-
 // Generate Prisma client
+prismaModuleDir = "./node_modules/.bin/prisma";
 function generate() {
     if (shell.exec('node ' + prismaModuleDir + ' generate  --schema=app/prisma/schema.prisma').code !== 0) {
         shell.echo('Error: Prisma client generation failed.');
@@ -39,6 +23,7 @@ function generate() {
         shell.echo('Prisma client generation succeeded.');
     }
 }
+generate();
 
 module.exports = {
     generate
