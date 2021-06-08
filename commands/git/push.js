@@ -11,5 +11,5 @@ if (shell.exec('cd app; git push').code !== 0) {
     shell.echo('Error: Git push failed');
     shell.exit(1);
 } else {
-    shell.echo('Error: Git push succeeded.');
+    shell.echo('Git push succeeded.');
 }

@@ -11,5 +11,5 @@ if (shell.exec('cd app/prisma; npx prisma studio').code !== 0) {
     shell.echo('Error: Prisma Studio failed');
     shell.exit(1);
 } else {
-    shell.echo('Error: Prisma Studio succeeded.');
+    shell.echo('Prisma Studio succeeded.');
 }

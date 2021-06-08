@@ -11,5 +11,5 @@ if (shell.exec('cd app; git add -A; git commit -am "Auto-commit"').code !== 0) {
     shell.echo('Error: Git commit failed');
     shell.exit(1);
 } else {
-    shell.echo('Error: Git commit succeeded.');
+    shell.echo('Git commit succeeded.');
 }

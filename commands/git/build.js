@@ -8,5 +8,5 @@ if (shell.exec('cd app; ' + command).code !== 0) {
     shell.echo('Error: Build command failed');
     shell.exit(1);
 } else {
-    shell.echo('Error: Build command succeeded.');
+    shell.echo('Build command succeeded.');
 }

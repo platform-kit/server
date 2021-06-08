@@ -36,7 +36,7 @@ function generate() {
         shell.echo('Error: Prisma client generation failed.');
         shell.exit(1);
     } else {
-        shell.echo('Error: Prisma client generation succeeded.');
+        shell.echo('Prisma client generation succeeded.');
     }
 }
 
