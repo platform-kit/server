@@ -4,10 +4,10 @@ var fs = require('fs');
 var prismaSchemaDir = null;
 var prismaModuleDir = null;
 
-fs.access("./app/prisma", function (error) {
+fs.access("./temp", function (error) {
     if (error) {
         console.log("Apps's Prisma schema directory does not exist.")
-        prismaSchemaDir = "./app/prisma";
+        prismaSchemaDir = "./temp";
     } else {
         console.log("App's Prisma schema directory exists.")
     }
@@ -16,7 +16,7 @@ fs.access("./app/prisma", function (error) {
 // Generate Prisma client
 prismaModuleDir = "./node_modules/.bin/prisma";
 function generate() {
-    if (shell.exec('node ' + prismaModuleDir + ' generate  --schema=app/prisma/schema.prisma').code !== 0) {
+    if (shell.exec('node ' + prismaModuleDir + ' generate  --schema=temp/schema.prisma').code !== 0) {
         shell.echo('Error: Prisma client generation failed.');
         shell.exit(1);
     } else {

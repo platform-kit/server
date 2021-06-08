@@ -11,12 +11,13 @@
     "commit": "node commands/git/commit.js",
     "push": "node commands/git/push.js",
     "build": "node commands/git/build.js",
-    "deploy": " node commands/git/pull.js; npm run prisma:generate; node commands/git/build.js",
+    "deploy": " node commands/git/pull.js; npm run prisma:introspect; npm run prisma:generate; node commands/git/build.js",
     "studio": "node commands/prisma/studio.js",
+    "prisma:introspect": "node commands/prisma/introspect.js",
     "prisma:generate": "node commands/prisma/generate.js"
   },
   "prisma": {
-    "schema": "app/prisma/schema.prisma"
+    "schema": "temp/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^2.24.0",

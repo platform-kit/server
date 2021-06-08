@@ -1,6 +1,7 @@
 node_modules/
-dist/
-app/
+dist/*
+app/*
+temp/*
 .DS_Store
 *.env
 *.env*
