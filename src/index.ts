@@ -36,19 +36,18 @@ if (process.env.PUBLIC_DIRECTORY != null) {
 if (Boolean(process.env.ENABLE_GRAPHQL) != false) {
 
   var gqlSchema = ApiSpec.getGraphQLSchemas()
-  console.log(gqlSchema)
+  // console.log(gqlSchema)
 
   const typeDefs = gqlSchema
 
-var users = new Resource('user');
+  //var data = new Resource('analytic_events');
+  console.log(ApiSpec.getGraphQLResolvers())
+  var generatedResolvers = ApiSpec.getGraphQLResolvers();
 
   // Resolvers define the technique for fetching the types defined in the
   // schema. This resolver retrieves books from the "books" array above.
   const resolvers = {
-    Query: {
-      users: () =>  users.browse()
-      ,
-    },
+    Query: generatedResolvers,
   };
   const server = new ApolloServer({
     typeDefs,
@@ -60,8 +59,8 @@ var users = new Resource('user');
 
 // Rest API Schema
 app.get('/api', function (req, res) {
-  var jsonSchema = fs.readFileSync('./app/prisma/json-schema/json-schema.json', { encoding: 'utf8', flag: 'r' })
-  var apiSchema = fs.readFileSync('./app/prisma/api-schema/api-schema.json', { encoding: 'utf8', flag: 'r' })
+  var jsonSchema = fs.readFileSync('./app/json-schema.json', { encoding: 'utf8', flag: 'r' })
+  var apiSchema = fs.readFileSync('./app/api-schema.json', { encoding: 'utf8', flag: 'r' })
   apiSchema = JSON.parse(apiSchema)
   var output = {
     apiSchema: apiSchema

@@ -56,7 +56,7 @@ export class Resource {
     }
 
     async add(data: any) {
-        var apiSchema = fs.readFileSync('./prisma/api-schema/api-schema.json', { encoding: 'utf8', flag: 'r' })
+        var apiSchema = fs.readFileSync('./app/api-schema.json', { encoding: 'utf8', flag: 'r' })
         apiSchema = JSON.parse(apiSchema)
         var validationRules = apiSchema.schemas?.[this.pluralizeType()]?.['add']?.['input_validation_rules']
         console.log(validationRules)
@@ -83,7 +83,7 @@ export class Resource {
     }
 
     async edit(id: Number, data: any) {
-        var apiSchema = fs.readFileSync('./prisma/api-schema/api-schema.json', { encoding: 'utf8', flag: 'r' })
+        var apiSchema = fs.readFileSync('./app/api-schema.json', { encoding: 'utf8', flag: 'r' })
         apiSchema = JSON.parse(apiSchema)
         var validationRules = apiSchema.schemas?.[this.pluralizeType()]?.['edit']?.['input_validation_rules']
         console.log(validationRules)
@@ -130,4 +130,3 @@ export class Resource {
 
 
 }
-
