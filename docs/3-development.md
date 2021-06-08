@@ -56,7 +56,7 @@ This adds another migration to the `prisma/migrations` directory and creates the
 
 The app can now use `PrismaClient` internally to perform operations against the new `profile` table. However, we must define the API Schema via the `api-schema.json` file in order to expose API the Browse/Read/Edit/Add/Delete operations in the GraphQL and REST APIs.
 
-### 3 Add API endpoints to your API schema
+### 3. Add API endpoints to your API schema
 
 Update your `api-schema.json` file by adding a new entry to the `schemas` object:
 
@@ -76,7 +76,7 @@ Each endpoint you want to expose (options: `browse`, `read`, `edit`, `add`, `del
 
 See [Validator.JS](https://www.npmjs.com/package/validatorjs) package for more details on the available rules.
 
-### 4 Test your new endpoint
+### 4. Test your new endpoint
 
 Restart your application server by running `npm run dev`
 
