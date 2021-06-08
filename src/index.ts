@@ -33,29 +33,28 @@ if (process.env.PUBLIC_DIRECTORY != null) {
 }
 
 // GraphQL
-if (Boolean(process.env.ENABLE_GRAPHQL) != false) {
 
-  var gqlSchema = ApiSpec.getGraphQLSchemas()
-  // console.log(gqlSchema)
+var gqlSchema = ApiSpec.getGraphQLSchemas()
+// console.log(gqlSchema)
 
-  const typeDefs = gqlSchema
+const typeDefs = gqlSchema
 
-  //var data = new Resource('analytic_events');
-  console.log(ApiSpec.getGraphQLResolvers())
-  var generatedResolvers = ApiSpec.getGraphQLResolvers();
+//var data = new Resource('analytic_events');
+console.log(ApiSpec.getGraphQLResolvers())
+var generatedResolvers = ApiSpec.getGraphQLResolvers();
 
-  // Resolvers define the technique for fetching the types defined in the
-  // schema. This resolver retrieves books from the "books" array above.
-  const resolvers = {
-    Query: generatedResolvers,
-  };
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-  });
-  server.start();
-  server.applyMiddleware({ app });  
-}
+// Resolvers define the technique for fetching the types defined in the
+// schema. This resolver retrieves books from the "books" array above.
+const resolvers = {
+  Query: generatedResolvers,
+};
+var ApolloServerInstance = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+ApolloServerInstance.start();
+ApolloServerInstance.applyMiddleware({ app });
+
 
 // Rest API Schema
 app.get('/api', function (req, res) {
