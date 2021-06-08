@@ -27,4 +27,5 @@ npm install
 ```
 ## Documentation
 - [Configuration](/docs/1-configuration.md)
-- [Development](/docs/2-development.md)
+- [Using the REST API](/docs/2-rest-api.md)
+- [Development](/docs/3-development.md)
