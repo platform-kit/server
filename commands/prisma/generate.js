@@ -14,6 +14,7 @@ fs.access("./app/prisma", function (error) {
 })
 
 // Get Prisma module
+/*
 fs.access("./app/node_modules/.bin/prisma", function (error) {
     if (error) {
         console.log("Apps's Prisma module directory does not exist. Using default Prisma instance.")
@@ -25,6 +26,9 @@ fs.access("./app/node_modules/.bin/prisma", function (error) {
         generate();
     }
 })
+*/
+prismaModuleDir = "./node_modules/.bin/prisma";
+generate();
 
 // Generate Prisma client
 function generate() {
