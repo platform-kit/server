@@ -4,14 +4,16 @@ var fs = require('fs');
 var prismaSchemaDir = null;
 var prismaModuleDir = null;
 
+/*
 fs.access("./temp", function (error) {
     if (error) {
-        console.log("Apps's Prisma schema directory does not exist.")
-        prismaSchemaDir = "./temp";
+        console.log("Apps's Prisma schema directory does not exist.")        
     } else {
         console.log("App's Prisma schema directory exists.")
     }
 })
+*/
+prismaSchemaDir = "./temp";
 
 // Generate Prisma client
 prismaModuleDir = "./node_modules/.bin/prisma";
