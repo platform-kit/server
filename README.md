@@ -1,6 +1,8 @@
 ## PlatformKit API
 
-Automatically generate a self-documenting **GraphQL** /  **REST API** from any database.
+Automatically generate a self-documenting **GraphQL** /  **REST API** from a PostgreSQL database.
+
+Configure with a single file (`api-schema.json`).
 
 Built with [Express](https://expressjs.com), [Apollo](https://www.apollographql.com), [Prisma](https://www.prisma.io), and [TypeScript](https://www.typescriptlang.org/).
 
@@ -16,13 +18,13 @@ Built with [Express](https://expressjs.com), [Apollo](https://www.apollographql.
 ### 1. Clone the repo
 
 ```
-git clone https://github.com/platform-kit/api platformkit-api
+git clone https://github.com/platform-kit/platformkit-api api
 ```
 
 ### 2. Install npm dependencies:
 
 ```
-cd platformkit-api
+cd api
 npm install
 ```
 ## Documentation
