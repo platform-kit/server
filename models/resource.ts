@@ -58,6 +58,9 @@ export class Resource {
     }
 
     async add(data: any) {
+        if(typeof data == 'string'){
+            data = JSON.parse(data)
+        }       
         var apiSchema = fs.readFileSync('./app/api-schema.json', { encoding: 'utf8', flag: 'r' })
         apiSchema = JSON.parse(apiSchema)
         var validationRules = apiSchema.schemas?.[this.pluralizeType()]?.['add']?.['input_validation_rules']
@@ -74,9 +77,7 @@ export class Resource {
         var model = await this.getModel()
         var output = null
         try {
-            const item = await model.create({
-                data: data
-            })
+            const item = await model.create({data:data})
             output = item
         } catch (err) {
             output = { error: err, message: "Something went wrong." }
@@ -85,6 +86,9 @@ export class Resource {
     }
 
     async edit(id: Number, data: any) {
+        if(typeof data == 'string'){
+            data = JSON.parse(data)
+        }      
         var apiSchema = fs.readFileSync('./app/api-schema.json', { encoding: 'utf8', flag: 'r' })
         apiSchema = JSON.parse(apiSchema)
         var validationRules = apiSchema.schemas?.[this.pluralizeType()]?.['edit']?.['input_validation_rules']
@@ -115,6 +119,7 @@ export class Resource {
     }
 
     async delete(id: Number) {
+        console.log(id)
         var model = await this.getModel()
         var output = null
         try {
@@ -124,6 +129,7 @@ export class Resource {
                 }
             })
             output = item
+            console.log('Deleted ' + model.singularizeType() + ' ' + id)
         } catch (err) {
             output = { error: err, message: "Something went wrong." }
         }

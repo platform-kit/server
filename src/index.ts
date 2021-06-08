@@ -43,9 +43,7 @@ var generatedResolvers = ApiSpec.getGraphQLResolvers();
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
-const resolvers = {
-  Query: generatedResolvers,
-};
+const resolvers = generatedResolvers;
 var ApolloServerInstance = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true }
 )
 ApolloServerInstance.start();
