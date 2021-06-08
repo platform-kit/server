@@ -10,7 +10,6 @@ const { ApolloServer, gql } = require('apollo-server-express');
 var jwt = require('express-jwt');
 var JWT = require('jsonwebtoken');
 const bearerToken = require('express-bearer-token');
-const prisma = new PrismaClient();
 var cors = require('cors')
 var fs = require('fs');
 var pluralize = require('pluralize')
@@ -33,7 +32,6 @@ if (process.env.PUBLIC_DIRECTORY != null) {
 }
 
 // GraphQL
-
 var gqlSchema = ApiSpec.getGraphQLSchemas()
 console.log(gqlSchema)
 
