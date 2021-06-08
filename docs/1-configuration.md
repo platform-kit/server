@@ -146,4 +146,4 @@ Restart your application server and test out your new endpoint.
 
 ## Next Steps
 
-- Check out the [Prisma docs](https://www.prisma.io/docs)
+- Check out the [Development Guide](docs/../2-development.md)
