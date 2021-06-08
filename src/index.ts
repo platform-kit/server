@@ -33,7 +33,7 @@ if (process.env.PUBLIC_DIRECTORY != null) {
 }
 
 // GraphQL
-if (Boolean(process.env.ENABLE_GRAPHQL) == true) {
+if (Boolean(process.env.ENABLE_GRAPHQL) != false) {
 
   var gqlSchema = ApiSpec.getGraphQLSchemas()
   console.log(gqlSchema)
