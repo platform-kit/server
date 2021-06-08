@@ -84,5 +84,5 @@ Test your new endpoint by opening up [http://localhost:3000/graphql](http://loca
 
 ## Next Steps
 
-- Check out the [Prisma docs](https://www.prisma.io/docs)
-- Check out the [Apollo docs](https://www.apollographql.com/docs/apollo-server/)
+- Check out the [Prisma docs](https://www.prisma.io/docs) for more on maintaining the database
+- Check out the [Apollo docs](https://www.apollographql.com/docs/apollo-server/) for more on GraphQL
