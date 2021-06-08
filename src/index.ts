@@ -35,7 +35,7 @@ if (process.env.PUBLIC_DIRECTORY != null) {
 // GraphQL
 
 var gqlSchema = ApiSpec.getGraphQLSchemas()
-// console.log(gqlSchema)
+console.log(gqlSchema)
 
 const typeDefs = gqlSchema
 

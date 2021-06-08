@@ -20,7 +20,11 @@ export class Resource {
     }
 
     pluralizeType() {
-        return pluralize.plural(this.resourceType)        
+        return pluralize.plural(this.resourceType)
+    }
+
+    singularizeType() {
+        return pluralize.singular(this.resourceType)
     }
 
     async browse(options?: any) {
@@ -39,19 +43,17 @@ export class Resource {
         return output
     }
 
-    async read(options?: any) {
-        if (options == null) {
-            options = {
-                take: 10,
-                skip: 0
-            }
-        }
+    async read(options?: any) {               
         var model = await this.getModel()
         try {
+            if(options.hasOwnProperty('id')){
+                options = {where: options}
+            }
             var output = await model.findUnique(options)
         } catch (err) {
             output = { error: err, message: "Something went wrong." }
         }
+        console.log(output)
         return output
     }
 
@@ -63,7 +65,7 @@ export class Resource {
         if (validationRules != null) {
             let validation = new Validator(data, validationRules);
             console.log(validation.passes())
-            if( validation.fails()) {
+            if (validation.fails()) {
                 output = { validation: validation.errors, message: "Something went wrong." }
                 return output
             }
@@ -91,7 +93,7 @@ export class Resource {
         if (validationRules != null) {
             let validation = new Validator(data, validationRules);
             console.log(validation.passes())
-            if( validation.fails()) {
+            if (validation.fails()) {
                 output = { validation: validation.errors, message: "Something went wrong." }
                 return output
             }
