@@ -56,7 +56,7 @@ ApolloServerInstance.applyMiddleware({ app });
 
 // Rest API Schema
 app.get('/api', function (req, res) {
-  var jsonSchema = fs.readFileSync('./app/json-schema.json', { encoding: 'utf8', flag: 'r' })
+  //var jsonSchema = fs.readFileSync('./app/json-schema.json', { encoding: 'utf8', flag: 'r' })
   var apiSchema = fs.readFileSync('./app/api-schema.json', { encoding: 'utf8', flag: 'r' })
   apiSchema = JSON.parse(apiSchema)
   var output = {
