@@ -48,10 +48,8 @@ var generatedResolvers = ApiSpec.getGraphQLResolvers();
 const resolvers = {
   Query: generatedResolvers,
 };
-var ApolloServerInstance = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
+var ApolloServerInstance = new ApolloServer({typeDefs, resolvers, introspection: true, playground:true}
+)
 ApolloServerInstance.start();
 ApolloServerInstance.applyMiddleware({ app });
 
