@@ -13,7 +13,7 @@
     "build": "node commands/git/build.js",
     "deploy": " node commands/git/pull.js; npm run prisma:generate; node commands/git/build.js",
     "studio": "node commands/prisma/studio.js",
-    "prisma:generate": "node ./commands/prisma/generate.js"
+    "prisma:generate": "node /commands/prisma/generate.js"
   },
   "prisma": {
     "schema": "app/prisma/schema.prisma"
