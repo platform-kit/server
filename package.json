@@ -2,6 +2,7 @@
   "name": "platformkit-api",
   "description": "Generate a REST API from a Prisma schema & deploy any SSG.",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
