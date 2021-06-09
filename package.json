@@ -2,7 +2,20 @@
   "name": "platformkit-api",
   "description": "Generate a REST API from a Prisma schema & deploy any SSG.",
   "version": "0.0.1",
-  "license": "MIT",
+  "license": "mit",
+  "keywords": [
+    "node",
+    "backend",
+    "typescript",
+    "api",
+    "rest",
+    "graphql",
+    "static site generator",
+    "code generation",
+    "schema",
+    "prisma",
+    "sql"
+  ],
   "scripts": {
     "dev": "ts-node src/index.ts",
     "start": "ts-node src/index.ts",
