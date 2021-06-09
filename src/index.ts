@@ -98,7 +98,7 @@ if (process.env.ENVIRONMENT == 'development') {
 // API Resource - Schema
 app.get('/api/:resource/schema', function (req, res) {
   const { resource } = req.params
-  var jsonSchema = fs.readFileSync('./temp/json-schema/json-schema.json', { encoding: 'utf8', flag: 'r' })
+  var jsonSchema = fs.readFileSync('./temp/json-schema.json', { encoding: 'utf8', flag: 'r' })
   jsonSchema = JSON.parse(jsonSchema)
   var type = resource.charAt(0).toUpperCase() + resource.slice(1)
   type = pluralize.singular(type)
