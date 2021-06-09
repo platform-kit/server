@@ -71,20 +71,41 @@
                         <span class="badge text-dark p-2 text-lowercase ">/api/{{ endpoint.split('/api/')[1] }}</span>
                         <b-collapse :id="'collapse-' + key" v-model="endpoints[key]" class="mt-2">
                             <b-card v-if="apiSpec.apiSchema.schemas[current] != null">
-                                <p class="card-text"><span class="badge bg-dark">Input Validation Rules</span><br>
+
+                                <p class="card-text mb-1"><span class="badge bg-dark mb-2">URL Parameters</span><br>
+                                    <b-card v-if="key == 'add' || key == 'schema'" bg-variant="dark"
+                                        text-variant="white" class="mb-2">
+                                        <code>N/A</code>
+                                    </b-card>
+                                    <b-card v-if="key == 'browse'" bg-variant="dark" text-variant="white" class="mb-2">
+                                        <code>take: Integer</code><br>
+                                        Determines maximum number of results that should be returned per API call.
+                                    </b-card>
+                                    <b-card v-if="key == 'browse'" bg-variant="dark" text-variant="white">
+                                        <code>skip: Integer</code><br>
+                                        Determines number of results that should be skipped before selecting the
+                                        results. See: <a
+                                            href="https://www.prisma.io/docs/concepts/components/prisma-client/pagination"
+                                            taget="_blank">cursor-based pagination</a>.
+                                    </b-card>
+                                    <b-card v-if="key == 'read' || key == 'edit' || key == 'delete'" bg-variant="dark" text-variant="white" class="mb-2">
+                                        <code>id: Integer</code><br>
+                                        ID of the database row to be returned.
+                                    </b-card>
+
+
+                                </p>
+                                <span class="badge bg-dark mb-2">Input Validation Rules</span>
+                                <b-card bg-variant="dark" text-variant="white">
                                     <code
                                         v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key]['input_validation_rules'] != null">
-                                        <pre style="font-size:66%;">{{ JSON.stringify(apiSpec.apiSchema.schemas[current][key]['input_validation_rules'], null, 3) }}</pre>
+                                        <pre class="mb-0">{{ JSON.stringify(apiSpec.apiSchema.schemas[current][key]['input_validation_rules'], null, 3) }}</pre>
+                                        <br>
+                                        <span class="text-light">See the <a href="https://www.npmjs.com/package/validatorjs" target="_blank">ValidatorJS Docs</a> for more info about validation rules.</span>
                                     </code>
                                     <code v-else>N/A</code>
-                                </p>
-                                <p class="card-text"><span class="badge bg-dark">Example Response</span><br>
-                                    <code
-                                        v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key] != '{}'  && apiSpec.apiSchema.schemas[current][key] != ''">
-                                        <pre style="font-size:66%;">{{ JSON.stringify(apiSpec.apiSchema.schemas[current][key]['response'], null, 3) }}</pre>
-                                    </code>
-                                    <code v-else>N/A</code>
-                                </p>
+                                </b-card>
+
                             </b-card>
                         </b-collapse>
                     </b-list-group-item>
