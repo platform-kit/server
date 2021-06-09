@@ -1,12 +1,14 @@
 ## PlatformKit API
 
-- Automatically generate a self-documenting **GraphQL** /  **REST API** from any database (PostgreSQL, MySQL, SQLite, MongoDB).
+- Automatically generate a self-documenting **GraphQL** /  **REST API**.
+  
+- Use with **any database** (PostgreSQL, MySQL, SQLite, MongoDB).
 
-- Deploy & serve any **static site generator**.
+- Maintain endpoints and validation rules with a **single config file** (`api-schema.json`).
 
-- Maintain with a **single config file** (`api-schema.json`).
+- Optionally deploy & serve any **static site generator**.
 
-- Optionally extend with **custom models**.
+- Optionally extend functionality with **custom models**.
 
 - Built with [Express](https://expressjs.com), [Apollo](https://www.apollographql.com), [Prisma](https://www.prisma.io), and [TypeScript](https://www.typescriptlang.org/).
 
