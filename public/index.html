@@ -2,7 +2,7 @@
 <html style="height:100vh;">
 
 <head>
-    <link rel="shortcut icon" type="image/jpg" href="icon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="icon.png" />
     <!-- Required Stylesheets -->
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
@@ -15,6 +15,22 @@
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+    <style>
+        .list-group-item {
+            transition: all 0.3s;
+        }
+
+        .api-list-item {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .api-list-item:hover,
+        .list-group-item:hover {
+            background: #eee;
+        }
+    </style>
 </head>
 
 <body style="background:linear-gradient(0deg, rgba(0,0,150,0.1) -10%, #fff 80%);">
@@ -32,7 +48,7 @@
         </div>
         <b-modal id="modal-api-spec" title="API Spec" size="xl" hide-header-close hide-footer
             v-if="apiSpec != null && apiSpec.apiSchema != null">
-            <b-card v-for="item in apiSpec.apiSchema.routes" class="px-2 mb-2"
+            <b-card v-for="item in apiSpec.apiSchema.routes" class="px-2 mb-2 api-list-item"
                 @click="current = item.resource; getSchema(item.resource)" v-if="current == null">
                 <b-icon-file-code class="text-primary" style="margin-right:5px;"></b-icon-file-code>
                 <span class="text-capitalize">{{ item.resource }}</span>
@@ -40,35 +56,35 @@
                     {{ item }}
                 </div>
             </b-card>
-            <b-card v-for="item in apiSpec.apiSchema.routes" class="px-2 pb-2"
-                v-if="current == item.resource">
+            <b-card v-for="item in apiSpec.apiSchema.routes" class="px-2 pb-2" v-if="current == item.resource">
                 <b-icon-file-code class="text-primary" style="margin-right:5px;"></b-icon-file-code>
-                <div class="d-inline mb-3 w-100"><span class="text-capitalize">{{ item.resource }}</span><span v-if="current == item.resource"
-                        class="badge bg-primary text-light p-2" style="float:right;cursor:pointer;"
-                        @click="current = null">Back</span></div>
+                <div class="d-inline mb-3 w-100"><span class="text-capitalize">{{ item.resource }}</span><span
+                        v-if="current == item.resource" class="badge bg-primary text-light p-2"
+                        style="float:right;cursor:pointer;" @click="current = null">Back</span></div>
                 <b-list-group class="mt-3 accordion">
                     <b-list-group-item class="p-3" v-for="(endpoint, key) in item.endpoints">
                         <span class="badge p-2" style="width:50px;text-align:left;"
                             v-bind:class="{'text-success':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'GET', 'text-primary':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'POST',  'text-danger':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'DELETE',  }">{{
                             endpoint.substr(0, endpoint.indexOf('/api')) }}</span>
-                        <span class="btn btn-light border btn-sm" style="float:right;"
-                            @click="setCurrentEndpoint(key)"
+                        <span class="btn btn-light border btn-sm" style="float:right;" @click="setCurrentEndpoint(key)"
                             v-if="apiSpec.apiSchema.schemas[current] != null">Details</span>
                         <span class="badge text-dark p-2 text-lowercase ">/api/{{ endpoint.split('/api/')[1] }}</span>
-                        <b-collapse :id="'collapse-' + key" v-model="endpoints[key]"  class="mt-2">
+                        <b-collapse :id="'collapse-' + key" v-model="endpoints[key]" class="mt-2">
                             <b-card v-if="apiSpec.apiSchema.schemas[current] != null">
                                 <p class="card-text"><span class="badge bg-dark">Input Validation Rules</span><br>
-                                    <code v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key]['input_validation_rules'] != null">
+                                    <code
+                                        v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key]['input_validation_rules'] != null">
                                         <pre style="font-size:66%;">{{ JSON.stringify(apiSpec.apiSchema.schemas[current][key]['input_validation_rules'], null, 3) }}</pre>
                                     </code>
                                     <code v-else>N/A</code>
-                                </p>   
+                                </p>
                                 <p class="card-text"><span class="badge bg-dark">Example Response</span><br>
-                                    <code v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key] != '{}'  && apiSpec.apiSchema.schemas[current][key] != ''">
+                                    <code
+                                        v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key] != '{}'  && apiSpec.apiSchema.schemas[current][key] != ''">
                                         <pre style="font-size:66%;">{{ JSON.stringify(apiSpec.apiSchema.schemas[current][key]['response'], null, 3) }}</pre>
                                     </code>
                                     <code v-else>N/A</code>
-                                </p>                                                                
+                                </p>
                             </b-card>
                         </b-collapse>
                     </b-list-group-item>
@@ -98,7 +114,7 @@
                 })
             },
             methods: {
-                setCurrentEndpoint(endpoint) {                
+                setCurrentEndpoint(endpoint) {
                     if (this.endpoints[endpoint] == true) {
                         this.endpoints = {}
                     }
