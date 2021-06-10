@@ -46,7 +46,7 @@ The GraphQL API is fully self-documenting. You can explore it locally at [http:/
 For each table - aka `resource` - defined in your prisma schema, you can access the REST API at the following set of endpoints:
 
 ##### Schema
-- `GET /api/{resource}/schema`: Fetch the JSON Schema for `posts` 
+- `GET /api/{resource}/schema`: Fetch the JSON Schema for the `resource` 
 
 ##### Browse
 - `GET /api/{resource}/browse?take={take}&skip={skip}&orderBy={orderBy}&orderField={orderField}`: Fetch an array of items from the `resource` table
@@ -54,7 +54,7 @@ For each table - aka `resource` - defined in your prisma schema, you can access 
     - `take` (optional): This specifies how many objects should be returned in the list
     - `skip` (optional): This specifies how many of the returned objects in the list should be skipped
     - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
-    - `orderBy` (optional): The sort field - defaults to `id`
+    - `orderField` (optional): The sort field - defaults to `id`
 
 ##### Read 
 - `GET /api/{resource}/:id`: Fetch a single `resource` by its `id`
