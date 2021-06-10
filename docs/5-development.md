@@ -31,7 +31,7 @@ npx prisma migrate dev --name add-profile
 
 This adds another migration to the `prisma/migrations` directory and creates the new `profiles` table in the database.
 
-#### 2. Add API endpoints to your API schema
+#### 2. Update your API schema
 
 The app can now use `PrismaClient` internally to perform operations against the new `profile` table. However, we must define the API Schema via the `api-schema.json` file in order to expose API the Browse/Read/Edit/Add/Delete operations in the GraphQL and REST APIs.
 
@@ -53,11 +53,11 @@ Each endpoint you want to expose (options: `browse`, `read`, `edit`, `add`, `del
 
 See [Validator.JS](https://www.npmjs.com/package/validatorjs) package for more details on the available rules.
 
-### 4. Add a new model to your codebase
+### 4. Update your code
 
-If you want to apply custom business logic to your model you must create a [Javascript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) with the same name as your schema (in this case, `profiles`) in your app's repo. This module must export methods that correspond to the REST API endpoints (`Browse`, `Read`, `Edit`, `Add`, `Delete`).
+If you want to apply custom business logic to your model you must create a [Javascript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) with the same name as your schema (in this case, `profiles`) in your app's repo. This module must export methods that correspond to the REST API endpoints (`browse`, `read`, `edit`, `add`, `delete`).
 
-### 4. Test your new endpoint
+### 4. Test your API
 
 Restart your application server by running `npm run dev`
 
