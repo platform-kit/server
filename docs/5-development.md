@@ -4,7 +4,7 @@ The workflow for making changes to your API is simple:
 
 - Add or change the **database** tables (through whatever methdod you like).
 - Add or change the **schemas** in the API Schema file.
-- Add or change the **models** that the api executes.
+- Add or change the **code** that the API executes.
 
 For the following example scenario, we'll use Node & Prisma, but you're free to use the language and framework of your choice, since PlatformKit-API works independently of your migrations and your application code, through the magic of Prisma's [Introspection](https://www.prisma.io/docs/concepts/components/introspection).
 
