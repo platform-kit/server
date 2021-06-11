@@ -26,10 +26,12 @@ app.use(bearerToken());
 app.use(bodyParser.json());
 
 // Static File Routes
-app.use(express.static('public'))
 if (process.env.PUBLIC_DIRECTORY != null) {
   app.use(express.static(process.env.PUBLIC_DIRECTORY))
+} else {
+  app.use(express.static('app/ssg/dist'))
 }
+app.use(express.static('public'))
 
 // GraphQL
 var gqlSchema = ApiSpec.getGraphQLSchemas()

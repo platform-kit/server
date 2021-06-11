@@ -38,84 +38,11 @@
         <img class="d-flex mx-auto" onclick="window.open('https://www.platformkit.com', '_blank')" src="icon.svg"
             style="cursor:pointer;margin:calc(25% - 75px);max-width:150px;box-shadow:10px 15px 15px rgba(0,0,150,0.1), -5px 5px 20px rgba(0,0,75,0.05);border-radius:75px;">
         <br>
-        <div class="w-100 text-center">
-            <a v-b-modal.modal-api-spec class="btn btn-outline-dark">
-                <b-icon-book style="margin-bottom:-1px;margin-right:5px;"></b-icon-book> API Spec
-            </a>
+        <div class="w-100 text-center">         
             <a href="/graphql" target="_blank" class="btn btn-outline-dark">
                 <b-icon-braces style="margin-bottom:-1px;margin-right:5px;"></b-icon-braces> GraphQL Explorer
             </a>
-        </div>
-        <b-modal id="modal-api-spec" title="API Spec" size="xl" hide-header-close hide-footer
-            v-if="apiSpec != null && apiSpec.apiSchema != null">
-            <b-card v-for="item in apiSpec.apiSchema.routes" class="px-2 mb-2 api-list-item"
-                @click="current = item.resource; getSchema(item.resource)" v-if="current == null">
-                <b-icon-file-code class="text-primary" style="margin-right:5px;"></b-icon-file-code>
-                <span class="text-capitalize">{{ item.resource }}</span>
-                <div v-if="current == item.resource">
-                    {{ item }}
-                </div>
-            </b-card>
-            <b-card v-for="item in apiSpec.apiSchema.routes" class="px-2 pb-2" v-if="current == item.resource">
-                <b-icon-file-code class="text-primary" style="margin-right:5px;"></b-icon-file-code>
-                <div class="d-inline mb-3 w-100"><span class="text-capitalize">{{ item.resource }}</span><span
-                        v-if="current == item.resource" class="badge bg-primary text-light p-2"
-                        style="float:right;cursor:pointer;" @click="current = null">Back</span></div>
-                <b-list-group class="mt-3 accordion">
-                    <b-list-group-item class="p-3" v-for="(endpoint, key) in item.endpoints">
-                        <span class="badge p-2" style="width:50px;text-align:left;"
-                            v-bind:class="{'text-success':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'GET', 'text-primary':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'POST',  'text-danger':  endpoint.substr(0, endpoint.indexOf(' /api')) == 'DELETE',  }">{{
-                            endpoint.substr(0, endpoint.indexOf('/api')) }}</span>
-                        <span class="btn btn-light border btn-sm" style="float:right;" @click="setCurrentEndpoint(key)"
-                            v-if="apiSpec.apiSchema.schemas[current] != null">Details</span>
-                        <span class="badge text-dark p-2 text-lowercase ">/api/{{ endpoint.split('/api/')[1] }}</span>
-                        <b-collapse :id="'collapse-' + key" v-model="endpoints[key]" class="mt-2">
-                            <b-card v-if="apiSpec.apiSchema.schemas[current] != null">
-
-                                <p class="card-text mb-1"><span class="badge bg-dark mb-2">URL Parameters</span><br>
-                                    <b-card v-if="key == 'add' || key == 'schema'" bg-variant="dark"
-                                        text-variant="white" class="mb-2">
-                                        <code>N/A</code>
-                                    </b-card>
-                                    <b-card v-if="key == 'browse'" bg-variant="dark" text-variant="white" class="mb-2">
-                                        <code>take: Integer</code><br>
-                                        Determines maximum number of results that should be returned per API call.
-                                    </b-card>
-                                    <b-card v-if="key == 'browse'" bg-variant="dark" text-variant="white">
-                                        <code>skip: Integer</code><br>
-                                        Determines number of results that should be skipped before selecting the
-                                        results. See: <a
-                                            href="https://www.prisma.io/docs/concepts/components/prisma-client/pagination"
-                                            taget="_blank">cursor-based pagination</a>.
-                                    </b-card>
-                                    <b-card v-if="key == 'read' || key == 'edit' || key == 'delete'" bg-variant="dark" text-variant="white" class="mb-2">
-                                        <code>id: Integer</code><br>
-                                        ID of the database row to be returned.
-                                    </b-card>
-
-
-                                </p>
-                                <span class="badge bg-dark mb-2">Input Validation Rules</span>
-                                <b-card bg-variant="dark" text-variant="white">
-                                    <code
-                                        v-if="apiSpec.apiSchema.schemas[current][key] != null && apiSpec.apiSchema.schemas[current][key]['input_validation_rules'] != null">
-                                        <pre class="mb-0">{{ JSON.stringify(apiSpec.apiSchema.schemas[current][key]['input_validation_rules'], null, 3) }}</pre>
-                                        <br>
-                                        <span class="text-light">See the <a href="https://www.npmjs.com/package/validatorjs" target="_blank">ValidatorJS Docs</a> for more info about validation rules.</span>
-                                    </code>
-                                    <code v-else>N/A</code>
-                                </b-card>
-
-                            </b-card>
-                        </b-collapse>
-                    </b-list-group-item>
-                    <b-list-group-item class="p-3 d-none">
-                        <span class="badge text-dark p-2 mb-3" style="opacity:0.5;">JSON SCHEMA</span>
-                        <pre style="font-size:66%;">{{ JSON.stringify(currentSchema, null, 3) }}</pre>
-                    </b-list-group-item>
-                </b-list-group>
-            </b-card>
-        </b-modal>
+        </div>        
     </div>
     <script>
 
