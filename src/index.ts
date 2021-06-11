@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 if (process.env.PUBLIC_DIRECTORY != null) {
   app.use(express.static(process.env.PUBLIC_DIRECTORY))
 } else {
-  app.use(express.static('./app/ssg/dist'))
+  app.use(express.static('./ssg/dist'))
 }
 
 // GraphQL
