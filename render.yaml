@@ -4,7 +4,7 @@ services:
   name: platformkit-api
   env: node  
   region: oregon 
-  plan: standard 
+  plan: starter 
   numInstances: 3
   buildCommand: npm run deploy
   startCommand: npm run start
