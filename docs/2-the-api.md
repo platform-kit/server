@@ -1,7 +1,5 @@
 # The API Schema
 
-#### Api-Schema.json
-
 PlatformKit-API generates a Rest API and GraphQL API from a single file: `api-schema.json`. 
 
 This file must be in the root directory of your repo.
