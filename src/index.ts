@@ -31,7 +31,6 @@ if (process.env.PUBLIC_DIRECTORY != null) {
 } else {
   app.use(express.static('app/ssg/dist'))
 }
-app.use(express.static('public'))
 
 // GraphQL
 var gqlSchema = ApiSpec.getGraphQLSchemas()
