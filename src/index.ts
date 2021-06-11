@@ -26,10 +26,11 @@ app.use(bearerToken());
 app.use(bodyParser.json());
 
 // Static File Routes
-if (process.env.PUBLIC_DIRECTORY != null) {
+console.log('Public Directory: ' + process.env.PUBLIC_DIRECTORY)
+if (process.env.PUBLIC_DIRECTORY != undefined) {
   app.use(express.static(process.env.PUBLIC_DIRECTORY))
 } else {
-  app.use(express.static('./ssg/dist'))
+  app.use(express.static('ssg/dist'))
 }
 
 // GraphQL
