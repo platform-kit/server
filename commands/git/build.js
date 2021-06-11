@@ -2,7 +2,7 @@ require('dotenv').config()
 var command = process.env.BUILD_COMMAND;
 
 if(command == null){
-    command = 'rm -r app/ssg; git clone https://github.com/platform-kit/platformkit-ui ssg; cd app/ssg; npm i; npm run build'
+    command = 'rm -r ssg; git clone https://github.com/platform-kit/platformkit-ui ssg; cd ssg; npm i; npm run build'
 }
 
 var shell = require('shelljs');
