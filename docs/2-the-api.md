@@ -6,19 +6,22 @@ This file must be in the root directory of your repo.
 
 The structure of this file is simple:
 
+- `name`: (String) The name of the API / app
+- `version`: (String) The version number
+- `schemas`: (Object) An object containing schema definitions
+  - `schema_name`: (String) A string that corresonds to a table in the database
+    - `action`: (String) A string which corresponds to one of the five BREAD actions (Browse, Read, Add, Edit, Delete)
+      - `input_validation_rules`: (Object) A JSON object describing the endpoint's validation rules for [ValidatorJS](https://www.npmjs.com/package/validatorjs)
+
+Here's an example of a minimal schema:
+
 <div class="card api-schema-card bg-dark br-5">
 <div class="card-header text-light"><span class="o-50">api-schema.json</span></div>
 <div class="card-body">
 <pre class="text-light mb-0">
 {
     "name": "PlatformKit API",
-    "version": "0.0.1",
-    "resources": [
-     "analytic_events"
-    ],
-    "links": {
-        "github": "https://github.com/platform-kit"
-    },
+    "version": "0.0.1",   
     "schemas": {
         "analytic_events": {
             "add": {
