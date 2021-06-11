@@ -5,7 +5,7 @@ services:
   env: node  
   region: oregon 
   plan: starter 
-  numInstances: 3
+  numInstances: 1
   buildCommand: npm run deploy
   startCommand: npm run start
   envVars:
