@@ -1,5 +1,8 @@
 # Overview
 
+PlatformKit UI is a **Node App** built with [Express](https://expressjs.com), [Apollo](https://www.apollographql.com), [Prisma](https://www.prisma.io), and [TypeScript](https://www.typescriptlang.org/).
+
+[Get the source on GitHub](https://github.com/platform-kit/platformkit-api).
 #### Features
 
 - Automatically generate a self-documenting **GraphQL** /  **REST API** from an existing database.
@@ -7,8 +10,6 @@
 - Maintain API endpoints and validation rules with a **single config file**.
 
 - Deploy & serve any **static site generator**.
-
-- Built with [Express](https://expressjs.com), [Apollo](https://www.apollographql.com), [Prisma](https://www.prisma.io), and [TypeScript](https://www.typescriptlang.org/).
 
 
 #### Installation
