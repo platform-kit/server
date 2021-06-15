@@ -37,9 +37,13 @@ export class Resource {
         var model = await this.getModel()
         try {
             var output = await model.findMany(options)
+            console.log(output)
         } catch (err) {
             output = { error: err, message: "Something went wrong." }
         }
+        if(output == null){
+            output = []
+        }        
         return output
     }
 

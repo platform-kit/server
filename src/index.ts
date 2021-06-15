@@ -28,32 +28,36 @@ app.use(bodyParser.json());
 // Static File Routes
 console.log('Public Directory: ' + process.env.PUBLIC_DIRECTORY)
 if (process.env.PUBLIC_DIRECTORY != undefined) {
-  app.use(express.static(process.env.PUBLIC_DIRECTORY))
+  app.use(express.static('app/' + process.env.PUBLIC_DIRECTORY))
 } else {
   app.use(express.static('ssg/dist'))
 }
 
 // GraphQL
-var gqlSchema = ApiSpec.getGraphQLSchemas()
-console.log(gqlSchema)
+var apiSchema = fs.readFileSync('./app/api-schema.json', { encoding: 'utf8', flag: 'r' })
+apiSchema = JSON.parse(apiSchema);
+if (apiSchema != null && apiSchema.schemas != null && apiSchema.schemas.length > 0) {
+  var gqlSchema = ApiSpec.getGraphQLSchemas()
+  console.log(gqlSchema)
 
-const typeDefs = gqlSchema
+  const typeDefs = gqlSchema
 
-//var data = new Resource('analytic_events');
-console.log(ApiSpec.getGraphQLResolvers())
-var generatedResolvers = ApiSpec.getGraphQLResolvers();
+  //var data = new Resource('analytic_events');
+  console.log(ApiSpec.getGraphQLResolvers())
+  var generatedResolvers = ApiSpec.getGraphQLResolvers();
 
-// Resolvers define the technique for fetching the types defined in the
-// schema. This resolver retrieves books from the "books" array above.
-const resolvers = generatedResolvers;
-var ApolloServerInstance = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true }
-)
-ApolloServerInstance.start();
-ApolloServerInstance.applyMiddleware({ app });
+  // Resolvers define the technique for fetching the types defined in the
+  // schema. This resolver retrieves books from the "books" array above.
+  const resolvers = generatedResolvers;
+  var ApolloServerInstance = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true }
+  )
+  ApolloServerInstance.start();
+  ApolloServerInstance.applyMiddleware({ app });
+}
 
 
 // Rest API Schema
-app.get('/api', function (req, res) {  
+app.get('/api', function (req, res) {
   var apiSchema = fs.readFileSync('./app/api-schema.json', { encoding: 'utf8', flag: 'r' })
   apiSchema = JSON.parse(apiSchema)
   var output = {
