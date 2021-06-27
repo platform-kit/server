@@ -1,6 +1,6 @@
 # Overview
 
-PlatformKit UI is a **Node App** built with [Express](https://expressjs.com), [Apollo](https://www.apollographql.com), [Prisma](https://www.prisma.io), and [TypeScript](https://www.typescriptlang.org/).
+PlatformKit API is a **Node App** built with [Express](https://expressjs.com), [Apollo](https://www.apollographql.com), [Prisma](https://www.prisma.io), and [TypeScript](https://www.typescriptlang.org/).
 
 [Get the source on GitHub](https://github.com/platform-kit/platformkit-api).
 #### Features
