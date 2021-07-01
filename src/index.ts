@@ -70,6 +70,44 @@ app.get('/api/:function', function (req, res) {
 
 })
 
+app.post('/api/:function', function (req, res) {
+  var fn = req.params.function;
+  //res.send(fn);
+  var result = { body: null };
+  lambdaLocal.execute({
+    event: { queryStringParameters: req.query },
+    lambdaPath: path.join(__dirname, '../app/functions/' + fn + '/' + fn + '.js'),
+    profileName: 'default',
+    timeoutMs: 3000,
+    callback: function (err: any, data: any) {
+      if (err) {
+        console.log('Error: \n');
+        console.log(err);
+        var output = {
+          "status" : 500,
+          "error": "Something went wrong."
+        };
+        res.json(output);
+      } else {
+        console.log('Function Result: \n');
+        console.log(data);
+        result = data;
+        var processed = '';
+        var isJson = null;
+        try { processed = data.body; processed = JSON.parse(processed); if (processed != null) { isJson = true; } } catch (err) { }
+        if (isJson) {
+          console.log("JSON Response.");        
+          res.json(processed);
+        }
+        else {
+          res.send(processed);
+        }
+      }
+    }
+  });
+
+})
+
 // Start Server
 const PORT = process.env.PORT || 3000
 const server = app.listen(PORT, () => console.log(`🚀 Server ready at: http://localhost:` + PORT,),)
