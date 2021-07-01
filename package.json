@@ -1,20 +1,14 @@
 {
   "name": "platformkit-api",
-  "description": "Generate a REST API from a Prisma schema & deploy any SSG.",
+  "description": "Deploy static site generators & serverless functions on any cloud platform.",
   "version": "0.0.1",
   "license": "mit",
   "keywords": [
     "node",
-    "backend",
-    "typescript",
-    "api",
-    "rest",
-    "graphql",
-    "static site generator",
-    "code generation",
-    "schema",
-    "prisma",
-    "sql"
+    "faas",
+    "jamstack",
+    "serverless",
+    "static site generator"
   ],
   "scripts": {
     "dev": "ts-node src/index.ts",
@@ -24,16 +18,9 @@
     "commit": "node commands/git/commit.js",
     "push": "node commands/git/push.js",
     "build": "node commands/git/build.js",
-    "deploy": " node commands/git/pull.js; npm run prisma:introspect; npm run prisma:generate; node commands/git/build.js",
-    "studio": "node commands/prisma/studio.js",
-    "prisma:introspect": "node commands/prisma/introspect.js",
-    "prisma:generate": "node commands/prisma/generate.js"
-  },
-  "prisma": {
-    "schema": "temp/schema.prisma"
+    "deploy": " node commands/git/pull.js; node commands/git/build.js"
   },
   "dependencies": {
-    "@prisma/client": "^2.24.0",
     "@types/express": "4.17.11",
     "@types/node": "12.20.10",
     "apollo-server": "^2.25.0",
@@ -44,18 +31,11 @@
     "express": "4.17.1",
     "express-bearer-token": "^2.4.0",
     "express-jwt": "^6.0.0",
-    "feed": "^4.2.2",
     "fs": "0.0.1-security",
     "fs-extra": "^10.0.0",
-    "graphql": "^15.5.0",
-    "hashids": "^2.2.8",
-    "json-schema-faker": "^0.5.0-rcv.34",
     "jsonwebtoken": "^8.5.1",
-    "nexus": "^1.0.0",
+    "lambda-local": "^1.7.4",
     "nodegit": "^0.27.0",
-    "pluralize": "^8.0.0",
-    "prisma": "2.24.0",
-    "prisma-json-schema-generator": "^1.3.0",
     "shelljs": "^0.8.4",
     "ts-node": "9.1.1",
     "typescript": "4.2.4",
