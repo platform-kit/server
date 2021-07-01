@@ -24,7 +24,7 @@ app.use(bearerToken());
 app.use(bodyParser.json());
 
 // Static File Routes
-console.log('Public Directory: ' + process.env.PUBLIC_DIRECTORY)
+console.log('Public Directory: app/' + process.env.PUBLIC_DIRECTORY)
 if (process.env.PUBLIC_DIRECTORY != undefined) {
   app.use(express.static('app/' + process.env.PUBLIC_DIRECTORY))
 } else {
