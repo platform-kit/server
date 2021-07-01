@@ -18,7 +18,8 @@
     "commit": "node commands/git/commit.js",
     "push": "node commands/git/push.js",
     "build": "node commands/git/build.js",
-    "deploy": " node commands/git/pull.js; node commands/git/build.js"
+    "build-functions": "node commands/serverless/install-functions-dependencies.js",
+    "deploy": "node commands/git/pull.js; node commands/git/build.js; node commands/serverless/install-functions-dependencies.js;"
   },
   "dependencies": {
     "@types/express": "4.17.11",
@@ -35,6 +36,7 @@
     "fs-extra": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
     "lambda-local": "^1.7.4",
+    "ncp": "^2.0.0",
     "nodegit": "^0.27.0",
     "shelljs": "^0.8.4",
     "ts-node": "9.1.1",
