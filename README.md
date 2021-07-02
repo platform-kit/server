@@ -13,9 +13,13 @@
 Built with [Express](https://expressjs.com) and [TypeScript](https://www.typescriptlang.org/).
 ### 1-Click Deployment
 
+To deploy to the cloud, simply click one of the buttons below...
+
 <a href="https://heroku.com/deploy?template=https://github.com/platform-kit/platformkit-api" target="_blank"><img src="https://www.herokucdn.com/deploy/button.svg" height="35"></a> <a href="https://render.com/deploy?repo=https://github.com/platform-kit/platformkit-api" target="_blank"><img src="https://render.com/images/deploy-to-render-button.svg" height="35"></a> <a href="https://cloud.digitalocean.com/apps/new?repo=https://github.com/platform-kit/platformkit-api/tree/main" target="_blank"><img src="https://www.deploytodo.com/do-btn-blue.svg" height="35"></a>
 
 ### Quick Start
+
+To install locally...
 #### 1. Clone the repo
 
 ```
