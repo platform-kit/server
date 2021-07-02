@@ -1,8 +1,8 @@
 # PlatformKit API
 
 ### Features
-- Deploy **serverless functions** on any major cloud provider.
 - Deploy **static site generator** with custom build commands.
+- Deploy **serverless functions** on any major cloud provider.
 - Deploy a **PostgreSQL database** with zero config.
 
 ### Benefits
