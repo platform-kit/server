@@ -40,7 +40,7 @@ app.get('/api/:function', function (req, res) {
     event: { queryStringParameters: req.query },
     lambdaPath: path.join(__dirname, '../app/functions/' + fn + '/' + fn + '.js'),
     profileName: 'default',
-    timeoutMs: 3000,
+    timeoutMs: 15000,
     callback: function (err: any, data: any) {
       if (err) {
         console.log('Error: \n');
@@ -78,7 +78,7 @@ app.post('/api/:function', function (req, res) {
     event: { queryStringParameters: req.query },
     lambdaPath: path.join(__dirname, '../app/functions/' + fn + '/' + fn + '.js'),
     profileName: 'default',
-    timeoutMs: 3000,
+    timeoutMs: 15000,
     callback: function (err: any, data: any) {
       if (err) {
         console.log('Error: \n');

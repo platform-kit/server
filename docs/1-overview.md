@@ -29,13 +29,9 @@ npm install
 
 ##### 3. Add the config
 
-Since the main function is to generate an API form a database, you will need to provisoin and configure a database. The database must not be empty (otherwise there would be no need for an API).
+Specify the `GITHUB_REPOSITORY`, `GITHUB_TOKEN`, and `BUILD_COMMAND` environment variables in your `.env` file. 
 
-If you're starting from scratch (an empty database), you can get started quickly by adding a [Prisma schema](https://www.prisma.io/docs/concepts/components/prisma-schema) at `/app/prisma/schema.prisma`. You will then need to add an `api-schema.json` file to the root directory. 
-
-See [The API Schema](/docs/2-the-api.md) for more info.
-
-Alternatively, if you've already got a repository with a `api-schema.json` file, specify the `GITHUB_REPOSITORY` and `GITHUB_TOKEN` environment variables in your `.env` file. Then run `npm run pull` to clone the repo into the local workspace.
+Then run `npm run pull` to clone the repo into the local workspace and `npm run build` to execute the build command.
 
 #### 4. Start the server
 
@@ -45,4 +41,8 @@ npm run dev
 
 The server is now running on [`http://localhost:3000`](http://localhost:3000). 
 
-You can now use the API , e.g. the api-schema endpoint, [`http://localhost:3000/api`](http://localhost:3000/api).
+Any static files that have been output by the site genreator into the output directory will be made public.
+
+The output directory defaults to `/dist` but you can specify another one via the `PUBLIC_DIRECTORY` environment variable.
+
+Serverless node.js functions in the `/functions` directory will be served at `/api/{function-name.js}`
