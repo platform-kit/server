@@ -11,7 +11,7 @@ Self-Hosted Serverless Infrastructure
 <p float="left">
 <img src="https://img.shields.io/badge/Node.js-ebf5fb?style=for-the-badge&logo=nodedotjs"/>
 <img src="https://img.shields.io/badge/Express.js-ebf5fb?style=for-the-badge&logo=express&logoColor=000" />
-<img src="https://img.shields.io/badge/Express.js-ebf5fb?style=for-the-badge&logo=express&logoColor=000" />
+ <img src="https://img.shields.io/badge/Lambda-ebf5fb?style=for-the-badge&logo=awslambda&logoColor=000" /> 
 </p>
 
 **Deploy with:** <br> 
