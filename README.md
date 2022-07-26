@@ -4,6 +4,8 @@
 Self-Hosted Serverless Infrastructure
 </p>
 
+<p align="center">Deploy serverless functions & static site generators via Express on any cloud platform.</p>
+
 **Built with:** <br>
 
 <p float="left">
